@@ -63,10 +63,23 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
+  environment: development
+  session:
+    secret: shhh_its_a_secret
   # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
+    vault:
+      development:
+        metadataUrl: https://vault.devcastops.com:8200/v1/identity/oidc/provider/default/.well-known/openid-configuration
+        # clientId:
+        # clientSecret:
+    oidc:
+      development:
+        signIn:
+          resolvers:
+            - resolver: emailMatchingUserEntityProfileEmail
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
