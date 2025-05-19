@@ -64,8 +64,8 @@ techdocs:
 
 auth:
   environment: development
-  session:
-    secret: shhh_its_a_secret
+  # session:
+  #   secret:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
     # See https://backstage.io/docs/auth/guest/provider
@@ -75,7 +75,7 @@ auth:
         metadataUrl: https://vault.devcastops.com:8200/v1/identity/oidc/provider/default/.well-known/openid-configuration
         # clientId:
         # clientSecret:
-    oidc:
+    oidc: 
       development:
         signIn:
           resolvers:
@@ -83,6 +83,9 @@ auth:
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
+  nomad:
+    address: nomad.devcastops.com
+  #   token:
 
 catalog:
   import:
@@ -97,7 +100,7 @@ catalog:
 
     # Local example template
     - type: file
-      target: ../../examples/template/template.yaml
+      target: ../../examples/template/nomad.yaml
       rules:
         - allow: [Template]
 

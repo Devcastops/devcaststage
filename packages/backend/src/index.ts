@@ -57,7 +57,6 @@ const VaultProviderModule = createBackendModule({
 });
 
 
-
 backend.add(import('@backstage/plugin-app-backend'));
 backend.add(import('@backstage/plugin-proxy-backend'));
 backend.add(import('@backstage/plugin-scaffolder-backend'));
@@ -105,4 +104,5 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 
 
 
+backend.add(import('@internal/plugin-scaffolder-backend-module-nomad'));
 backend.start();

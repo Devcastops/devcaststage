@@ -1,0 +1,53 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  name: nomd
+  title: nomad
+  description: An example template for the scaffolder that creates a simple Node.js service
+spec:
+  owner: user:guest
+  type: service
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Fill in some steps
+      required:
+        - instance_name
+        - node_pool
+      properties:
+        instance_name:
+          title: Name
+          type: string
+          description: Unique name of the component
+        node_pool:
+          title: Department
+          type: string
+          description: Department to deploy in to
+        instance_size:
+          title: Instance Size
+          type: string
+          description: instance_size
+          default: small
+          enum:
+            - e2-standard-2
+            - e2-standard-4
+          enumNames:
+            - small
+            - medium
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch-base
+      name: Fetch Base
+      action: nomad:job:dispatch
+      input:
+        job_name: client-controller #${{ parameters.name }}
+        namespace: core
+        params:
+          instance_name: ${{ parameters.instance_name }}
+          node_pool: ${{ parameters.node_pool }}
+          instance_size: ${{ parameters.instance_size }}
