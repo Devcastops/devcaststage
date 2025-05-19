@@ -45,7 +45,7 @@ spec:
       name: Fetch Base
       action: nomad:job:dispatch
       input:
-        job_name: client-controller #${{ parameters.name }}
+        job_name: client-controller
         namespace: core
         params:
           instance_name: ${{ parameters.instance_name }}
