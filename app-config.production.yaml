@@ -12,3 +12,23 @@ backend:
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
   listen: ':7007'
+
+
+auth:
+  environment: development
+  session:
+    secret: hello
+  # see https://backstage.io/docs/auth/ to learn about auth providers
+  providers:
+    # See https://backstage.io/docs/auth/guest/provider
+    guest: {}
+    vault:
+      development:
+        metadataUrl: https://vault.devcastops.com:8200/v1/identity/oidc/provider/default/.well-known/openid-configuration
+        clientId: this_is_an_id
+        clientSecret: this_is_a_secret
+    oidc: 
+      development:
+        signIn:
+          resolvers:
+            - resolver: emailMatchingUserEntityProfileEmail
