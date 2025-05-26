@@ -105,4 +105,5 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 
 
 backend.add(import('@internal/plugin-scaffolder-backend-module-nomad'));
+backend.add(import('@internal/plugin-catalog-backend-module-nomad'));
 backend.start();
